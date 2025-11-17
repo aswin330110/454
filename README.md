@@ -45,8 +45,64 @@ The tool requires:
 - **Pygments** (recommended): Syntax highlighting
 - **tqdm** (recommended): Progress bars
 - **chardet** (required): Encoding detection
+- **Flask** (for web interface): Web server
+- **Werkzeug** (for web interface): WSGI utilities
 
-## 🎯 Usage
+## 🌐 Web Interface (Easiest Way - Perfect for Windows!)
+
+### Quick Start
+
+**Windows Users:**
+1. Double-click `START_WEB_INTERFACE.bat`
+2. Open browser to `http://localhost:5000`
+3. Drag & drop your ZIP file
+4. Click "Process Repository"
+5. Download your files!
+
+**Mac/Linux Users:**
+```bash
+./start_web_interface.sh
+# Then open http://localhost:5000
+```
+
+### Features
+
+- 📤 **Drag & Drop Upload** - Modern, intuitive interface
+- ⚡ **Real-Time Progress** - Live updates during processing
+- 📊 **Beautiful Results** - Interactive statistics dashboard
+- 🎨 **Modern Design** - Gradient backgrounds, smooth animations
+- ⚙️ **Configurable** - Choose output formats and options
+- 🌐 **Browser-Based** - No command line needed!
+
+### How to Use
+
+1. **Start the Server**
+   - Windows: Double-click `START_WEB_INTERFACE.bat`
+   - Mac/Linux: Run `./start_web_interface.sh`
+
+2. **Open Browser**
+   - Navigate to `http://localhost:5000`
+
+3. **Upload ZIP File**
+   - Drag and drop your repository ZIP
+   - Or click to browse
+
+4. **Configure Options** (optional)
+   - Choose output formats (HTML, PDF, Markdown)
+   - Enable/disable statistics and features
+
+5. **Process**
+   - Click "Process Repository"
+   - Watch real-time progress
+
+6. **Download Results**
+   - View statistics and charts
+   - Download all generated files
+   - Preview HTML in browser
+
+See [WEB_INTERFACE_README.md](WEB_INTERFACE_README.md) for detailed web interface documentation.
+
+## 🎯 Command Line Usage
 
 ### Basic Usage
 

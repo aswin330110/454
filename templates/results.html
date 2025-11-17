@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Git Zip Extractor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .download-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .download-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .file-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .file-desc {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .download-button, .view-button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-button {
+            background: #667eea;
+            color: white;
+        }
+
+        .download-button:hover {
+            background: #5568d3;
+        }
+
+        .view-button {
+            background: #764ba2;
+            color: white;
+        }
+
+        .view-button:hover {
+            background: #653a8a;
+        }
+
+        .languages-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .languages-table th,
+        .languages-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .languages-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .languages-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .action-button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .primary-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .secondary-button {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .secondary-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="success-icon">✅</div>
+            <h1>Processing Complete!</h1>
+            <p>Your repository has been successfully processed</p>
+        </header>
+
+        <div class="card">
+            <h2 class="section-title">📊 Repository Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">{{ status.stats.total_files }}</div>
+                    <div class="stat-label">Total Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ status.stats.total_lines }}</div>
+                    <div class="stat-label">Total Lines</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">{{ status.stats.total_size }}</div>
+                    <div class="stat-label">Total Size</div>
+                </div>
+            </div>
+
+            {% if status.stats.languages %}
+            <h3 style="margin: 30px 0 15px; color: #667eea;">Languages Breakdown</h3>
+            <table class="languages-table">
+                <thead>
+                    <tr>
+                        <th>Language</th>
+                        <th>Files</th>
+                        <th>Lines</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lang, data in status.stats.languages.items() | sort(attribute='1.lines', reverse=True) | list[:10] %}
+                    <tr>
+                        <td><strong>{{ lang.capitalize() }}</strong></td>
+                        <td>{{ data.files }}</td>
+                        <td>{{ "{:,}".format(data.lines) }}</td>
+                        <td>
+                            {% set percentage = (data.lines / status.stats.total_lines * 100) if status.stats.total_lines > 0 else 0 %}
+                            {{ "%.1f"|format(percentage) }}%
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: {{ percentage }}%"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">📥 Download Generated Files</h2>
+            <div class="downloads-grid">
+                <div class="download-item">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">PDF Document</div>
+                    <div class="file-desc">Professional PDF with statistics and code</div>
+                    <a href="/download/{{ job_id }}/repository_content.pdf" class="download-button">Download PDF</a>
+                </div>
+
+                <div class="download-item">
+                    <div class="file-icon">🌐</div>
+                    <div class="file-name">HTML Document</div>
+                    <div class="file-desc">Interactive HTML with syntax highlighting</div>
+                    <a href="/view/{{ job_id }}/repository_content.html" class="view-button" target="_blank">View HTML</a>
+                    <a href="/download/{{ job_id }}/repository_content.html" class="download-button">Download</a>
+                </div>
+
+                <div class="download-item">
+                    <div class="file-icon">📝</div>
+                    <div class="file-name">Markdown</div>
+                    <div class="file-desc">GitHub-flavored markdown documentation</div>
+                    <a href="/download/{{ job_id }}/repository_content.md" class="download-button">Download MD</a>
+                </div>
+
+                <div class="download-item">
+                    <div class="file-icon">📋</div>
+                    <div class="file-name">Text File</div>
+                    <div class="file-desc">Plain text version with all content</div>
+                    <a href="/download/{{ job_id }}/repository_content.txt" class="download-button">Download TXT</a>
+                </div>
+
+                <div class="download-item">
+                    <div class="file-icon">📊</div>
+                    <div class="file-name">Statistics JSON</div>
+                    <div class="file-desc">Machine-readable statistics data</div>
+                    <a href="/download/{{ job_id }}/repository_stats.json" class="download-button">Download JSON</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="/" class="action-button primary-button">Process Another Repository</a>
+            <button onclick="cleanup()" class="action-button secondary-button">Clean Up Files</button>
+        </div>
+
+        <footer>
+            <p>Files will be automatically cleaned up after you close this page</p>
+        </footer>
+    </div>
+
+    <script>
+        function cleanup() {
+            if (confirm('Are you sure you want to delete all generated files?')) {
+                fetch('/cleanup/{{ job_id }}', { method: 'POST' })
+                    .then(() => {
+                        alert('Files cleaned up successfully!');
+                        window.location.href = '/';
+                    })
+                    .catch(err => {
+                        alert('Error cleaning up files: ' + err.message);
+                    });
+            }
+        }
+
+        // Auto cleanup on page unload (optional)
+        window.addEventListener('beforeunload', () => {
+            navigator.sendBeacon('/cleanup/{{ job_id }}');
+        });
+    </script>
+</body>
+</html>
