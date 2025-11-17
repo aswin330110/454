@@ -41,7 +41,7 @@ Thumbs.db
 *_output_*/
 extracted/
 *.pdf
-*.txt
+repository_content.txt
 
 # Test files
 test_*.zip
