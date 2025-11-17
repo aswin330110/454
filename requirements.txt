@@ -1,1 +1,11 @@
+# Core PDF generation
 reportlab>=4.0.0
+
+# Syntax highlighting (optional but recommended)
+Pygments>=2.16.0
+
+# Progress bars (optional but recommended)
+tqdm>=4.66.0
+
+# Character encoding detection
+chardet>=5.2.0

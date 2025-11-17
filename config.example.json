@@ -1,0 +1,12 @@
+{
+  "max_file_size": 10485760,
+  "max_lines_per_file": 10000,
+  "max_lines_in_pdf": 1000,
+  "include_stats": true,
+  "include_tree": true,
+  "syntax_highlighting": true,
+  "generate_html": true,
+  "generate_markdown": true,
+  "page_size": "letter",
+  "font_size": 8
+}
